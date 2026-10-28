@@ -7,6 +7,7 @@ let typewriterTimer = null;
 let currentTextToType = "";
 
 let quizIndex = 0;
+let quizQuestions = [];
 let score = 0;
 let userHistory = [];
 
@@ -109,13 +110,13 @@ function startTypewriter(text) {
     clearInterval(typewriterTimer);
     currentTextToType = text;
     const textEl = document.getElementById("vn-text");
-    textEl.innerText = "";
+    textEl.textContent = "";
     isTyping = true;
     let i = 0;
 
     typewriterTimer = setInterval(() => {
         if (i < text.length) {
-            textEl.innerText += text.charAt(i);
+            textEl.textContent += text.charAt(i);
             i++;
         } else {
             clearInterval(typewriterTimer);
@@ -128,7 +129,7 @@ function handleDialogueClick() {
     if (isTyping) {
         // Se estiver digitando, completa o texto instantaneamente no clique
         clearInterval(typewriterTimer);
-        document.getElementById("vn-text").innerText = currentTextToType;
+        document.getElementById("vn-text").textContent = currentTextToType;
         isTyping = false;
     } else {
         // Avança para a próxima fala
@@ -149,7 +150,36 @@ function skipIntro() {
 /* ==========================================================================
    6. LÓGICA DO QUIZ KAHOOT
    ========================================================================== */
+function shuffle(arr) {
+    const a = [...arr];
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
+
+// Sorteia TOTAL_PERGUNTAS imagens distintas, garantindo ao menos uma de cada tipo
+// (alternando o tipo sorteado primeiro) e embaralhando a ordem final.
+function buildQuizQuestions() {
+    const ia = shuffle(perguntas.filter(p => p.isIA));
+    const reais = shuffle(perguntas.filter(p => !p.isIA));
+    const total = Math.min(TOTAL_PERGUNTAS, perguntas.length);
+    const primeiro = Math.random() < 0.5 ? [ia, reais] : [reais, ia];
+    const result = [];
+    for (let i = 0; result.length < total; i++) {
+        const pool = primeiro[i % 2];
+        if (pool.length) {
+            result.push(pool.shift());
+        } else if (!primeiro[(i + 1) % 2].length) {
+            break;
+        }
+    }
+    return shuffle(result);
+}
+
 function startQuiz() {
+    quizQuestions = buildQuizQuestions();
     quizIndex = 0;
     score = 0;
     userHistory = [];
@@ -158,14 +188,14 @@ function startQuiz() {
 }
 
 function renderQuizQuestion() {
-    const q = perguntas[quizIndex];
-    document.getElementById("quiz-counter").innerText = `Pergunta ${quizIndex + 1} de ${perguntas.length}`;
+    const q = quizQuestions[quizIndex];
+    document.getElementById("quiz-counter").innerText = `Pergunta ${quizIndex + 1} de ${quizQuestions.length}`;
     document.getElementById("quiz-score").innerText = score;
     document.getElementById("quiz-img").src = q.imagem;
 }
 
 function submitAnswer(userSelectedIA) {
-    const q = perguntas[quizIndex];
+    const q = quizQuestions[quizIndex];
     const isCorrect = (userSelectedIA === q.isIA);
 
     if (isCorrect) {
@@ -205,7 +235,7 @@ function showFeedbackModal(isCorrect, question) {
 
 function closeFeedbackAndNext() {
     document.getElementById("modal-feedback").classList.add("hidden");
-    if (quizIndex < perguntas.length - 1) {
+    if (quizIndex < quizQuestions.length - 1) {
         quizIndex++;
         renderQuizQuestion();
     } else {
@@ -215,7 +245,7 @@ function closeFeedbackAndNext() {
 
 // Modal de Zoom da imagem
 function openZoomModal() {
-    const currentImg = perguntas[quizIndex].imagem;
+    const currentImg = quizQuestions[quizIndex].imagem;
     document.getElementById("zoom-img-target").src = currentImg;
     document.getElementById("modal-zoom").classList.remove("hidden");
 }
@@ -230,26 +260,26 @@ function closeZoomModal() {
 function finishQuiz() {
     switchScreen("screen-result");
 
-    const hasWon = score >= 6;
+    const hasWon = score >= MINIMO_ACERTOS;
     const iconBox = document.getElementById("result-icon-box");
     const titleEl = document.getElementById("result-status-title");
     const subtitleEl = document.getElementById("result-status-subtitle");
     const scoreText = document.getElementById("result-score-text");
 
-    scoreText.innerText = `${score} / ${perguntas.length}`;
+    scoreText.innerText = `${score} / ${quizQuestions.length}`;
 
     if (hasWon) {
         iconBox.className = "w-20 h-20 rounded-2xl mx-auto flex items-center justify-center text-4xl mb-4 bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 shadow-emerald-500/20";
         iconBox.innerHTML = '<i class="fa-solid fa-trophy"></i>';
         titleEl.innerText = "VOCÊ VENCEU!";
         titleEl.className = "font-display text-3xl md:text-5xl font-extrabold mb-2 text-emerald-400";
-        subtitleEl.innerText = "Parabéns! Você demonstrou excelente percepção para identificar inteligência artificial.";
+        subtitleEl.innerText = "";
     } else {
         iconBox.className = "w-20 h-20 rounded-2xl mx-auto flex items-center justify-center text-4xl mb-4 bg-rose-500/20 text-rose-400 border border-rose-500/40 shadow-rose-500/20";
         iconBox.innerHTML = '<i class="fa-solid fa-arrow-rotate-left"></i>';
         titleEl.innerText = "TENTE NOVAMENTE!";
         titleEl.className = "font-display text-3xl md:text-5xl font-extrabold mb-2 text-rose-400";
-        subtitleEl.innerText = "Você não atingiu a pontuação mínima de 6 acertos para aprovação.";
+        subtitleEl.innerText = `Você não atingiu a pontuação mínima de ${MINIMO_ACERTOS} acertos para aprovação.`;
     }
 
     // Gerar Lista de Revisão

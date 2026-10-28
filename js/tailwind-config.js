@@ -3,14 +3,14 @@ tailwind.config = {
     theme: {
         extend: {
             colors: {
-                darkbg: '#090d16',
-                darkcard: '#111827',
-                vnbox: '#0f172a',
-                kahootRed: '#e11d48',
-                kahootBlue: '#0284c7'
+                darkbg: '#020b20',
+                darkcard: '#061633',
+                vnbox: '#04112b',
+                kahootRed: '#e632aa',
+                kahootBlue: '#087fe4'
             },
             fontFamily: {
-                display: ['Fredoka', 'sans-serif'],
+                display: ['Oxanium', 'sans-serif'],
                 body: ['Inter', 'sans-serif']
             }
         }

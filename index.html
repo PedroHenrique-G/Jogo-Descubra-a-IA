@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Descubra a IA - Visual Novel & Quiz</title>
+    <title>Quiz SELIBI 2026 - Inteligência com Consciência</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="js/tailwind-config.js"></script>
@@ -12,24 +12,25 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oxanium:wght@500;600;700;800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body class="dark-ambient-bg min-h-screen flex flex-col justify-between items-center p-2 md:p-6 relative">
 
     <!-- CABEÇALHO FIXO -->
-    <header class="w-full max-w-5xl flex justify-between items-center py-3 px-5 bg-slate-900/80 backdrop-blur-md rounded-2xl border border-slate-800/80 mb-3 z-30 shadow-lg">
+    <header class="event-header w-full max-w-5xl flex justify-between items-center py-3 px-5 bg-slate-900/80 backdrop-blur-md rounded-2xl border border-slate-800/80 mb-3 z-30 shadow-lg">
         <div class="flex items-center space-x-3">
-            <div class="w-9 h-9 rounded-xl bg-indigo-600/30 border border-indigo-400/40 flex items-center justify-center text-indigo-400 font-bold">
-                <i class="fa-solid fa-microchip text-lg"></i>
+            <div class="event-mark w-9 h-9 rounded-xl bg-indigo-600/30 border border-indigo-400/40 flex items-center justify-center text-indigo-400 font-bold">
+                <i class="fa-solid fa-book-open text-lg"></i>
             </div>
-            <span class="font-display font-bold text-lg md:text-xl text-slate-100 tracking-wide">
-                Descubra a IA
-            </span>
+            <div>
+                <span class="block font-display font-bold text-lg md:text-xl text-slate-100 tracking-wide">SELIBI 2026</span>
+                <span class="hidden sm:block text-[10px] md:text-xs text-cyan-300 tracking-wider">VII Semana do Livro e da Biblioteca</span>
+            </div>
         </div>
-        <div id="header-badge" class="text-xs md:text-sm font-semibold px-3 py-1 bg-slate-800/90 text-indigo-300 rounded-lg border border-slate-700">
-            Curso Técnico de Desenvolvimento de Sistemas no SENAI
+        <div id="header-badge" class="text-[10px] md:text-xs font-semibold px-3 py-1.5 bg-slate-800/90 text-indigo-300 rounded-lg border border-slate-700 text-right">
+            Inteligência com Consciência
         </div>
     </header>
 
@@ -37,33 +38,61 @@
     <main class="w-full max-w-5xl flex-1 flex flex-col justify-center items-center relative z-10 my-auto">
 
 
-        <section id="screen-start" class="w-full max-w-2xl bg-slate-900/90 border border-slate-800 rounded-3xl p-6 md:p-10 text-center shadow-2xl backdrop-blur-md">
-            
-            <div class="inline-block p-4 bg-indigo-950/80 rounded-2xl border border-indigo-500/30 mb-6 text-indigo-400 shadow-inner">
-                <i class="fa-solid fa-robot text-5xl md:text-6xl"></i>
+        <section id="screen-start" class="event-start-card w-full max-w-4xl bg-slate-900/90 border border-slate-800 rounded-3xl p-4 md:p-7 text-center shadow-2xl backdrop-blur-md">
+            <div class="event-kicker mx-auto mb-4">
+                <span>VII Semana do Livro e da Biblioteca</span>
+                <span class="event-kicker-line" aria-hidden="true"></span>
             </div>
-            
-            <h1 class="font-display text-4xl md:text-6xl font-extrabold mb-4 text-white tracking-wide">
-                Descubra a IA
-            </h1>
-            
-            <p class="text-slate-300 text-base md:text-lg mb-8 max-w-lg mx-auto leading-relaxed">
-                Você consegue distinguir fotos reais de imagens geradas por Inteligência Artificial? Aceite o desafio dos nossos professores de TI!
-            </p>
 
-            <!-- Card Informativo dos Professores -->
-            <div class="bg-slate-950/80 p-4 rounded-2xl border border-slate-800 mb-8 max-w-md mx-auto text-left text-sm text-slate-300 flex items-center space-x-4">
-                <i class="fa-solid fa-user-ninja text-3xl text-indigo-400"></i>
-                <div>
-                    <p class="font-bold text-slate-100">Prof. Edgar & Prof. João</p>
-                    <p class="text-xs text-slate-400">Instruções em modo Visual Novel antes de iniciar o quiz.</p>
+            <img
+                class="event-poster w-full rounded-2xl"
+                src="assets/images/arte-quiz.png"
+                alt="Cartaz do Quiz SELIBI 2026: Certo ou Errado? Desafie seus conhecimentos sobre IA, informação e ética."
+            >
+
+            <div class="event-start-actions flex flex-col md:flex-row items-center justify-between gap-5 md:gap-8 px-2 md:px-4 py-6">
+                <div class="text-left max-w-xl">
+                    <p class="text-slate-200 text-base md:text-lg leading-relaxed">
+                        Você consegue distinguir imagens reais das geradas por inteligência artificial?
+                        Teste seu olhar e reflita sobre informação e ética na era digital.
+                    </p>
+                    <p class="mt-3 text-sm text-cyan-300">
+                        <i class="fa-solid fa-location-dot mr-2" aria-hidden="true"></i>Atividade livre · Biblioteca
+                    </p>
+                    <p class="mt-1 text-xs text-slate-400">Com os professores Edgar e João · Turma 1DSI</p>
                 </div>
+
+                <button data-action="start-game" class="event-start-button w-full md:w-auto md:min-w-64 py-4 px-8 text-white font-display font-bold text-lg rounded-2xl transform hover:-translate-y-0.5 active:translate-y-0.5 transition cursor-pointer flex items-center justify-center space-x-3">
+                    <span>INICIAR QUIZ</span>
+                    <i class="fa-solid fa-play text-base" aria-hidden="true"></i>
+                </button>
             </div>
 
-            <button data-action="start-game" class="w-full max-w-md py-4 px-8 bg-[#812e4a] hover:bg-[#a03a5d] text-white font-display font-bold text-xl rounded-2xl shadow-lg shadow-[#812e4a]/30 hover:shadow-[#812e4a]/50 transform hover:-translate-y-0.5 active:translate-y-0.5 transition cursor-pointer flex items-center justify-center space-x-3 mx-auto">
-                <span>INICIAR JOGO</span>
-                <i class="fa-solid fa-play text-lg"></i>
-            </button>
+            <section class="event-program text-left border-t border-slate-700/80 pt-5 px-2 md:px-4" aria-labelledby="program-title">
+                <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2 mb-4">
+                    <div>
+                        <p class="text-xs font-bold uppercase tracking-[0.2em] text-cyan-300">Além do quiz</p>
+                        <h2 id="program-title" class="font-display text-xl md:text-2xl font-bold text-white">Programação de atividades livres</h2>
+                    </div>
+                    <span class="text-xs text-slate-400">SELIBI 2026 · SENAI Ipiranga</span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <article class="event-activity-card rounded-xl border border-slate-700/80 bg-slate-950/60 p-4">
+                        <div class="flex items-center justify-between gap-3 mb-2">
+                            <h3 class="font-display font-bold text-white">IA × Humano</h3>
+                            <span class="event-location">Biblioteca</span>
+                        </div>
+                        <p class="text-sm text-slate-300">Quem escreveu isso? Leia dois trechos de um mesmo livro e descubra qual foi escrito por inteligência artificial.</p>
+                    </article>
+                    <article class="event-activity-card rounded-xl border border-slate-700/80 bg-slate-950/60 p-4">
+                        <div class="flex items-center justify-between gap-3 mb-2">
+                            <h3 class="font-display font-bold text-white">O livro também é uma ferramenta</h3>
+                            <span class="event-location">Oficina</span>
+                        </div>
+                        <p class="text-sm text-slate-300">Pegue uma ferramenta. Leve um conhecimento.</p>
+                    </article>
+                </div>
+            </section>
         </section>
 
 
@@ -134,10 +163,13 @@
             <div class="w-full flex justify-between items-center bg-slate-900/90 border border-slate-800 rounded-2xl p-3.5 mb-4 shadow-xl backdrop-blur-md">
                 <div class="flex items-center space-x-2">
                     <span class="bg-indigo-950 text-indigo-300 text-xs md:text-sm font-bold px-3 py-1.5 rounded-xl border border-indigo-800" id="quiz-counter">
-                        Pergunta 1 de 10
+                        Pergunta 1 de 5
                     </span>
                 </div>
-                
+                <p class="quiz-status-question font-display font-bold text-slate-100">
+                    Esta imagem é uma foto REAL ou foi gerada por Inteligência Artificial?
+                </p>
+
                 <div class="flex items-center space-x-3 text-amber-400 font-bold text-sm md:text-base">
                     <i class="fa-solid fa-trophy"></i>
                     <span>Acertos: <span id="quiz-score" class="text-white">0</span></span>
@@ -224,6 +256,7 @@
 
         <section id="screen-result" class="hidden w-full max-w-3xl bg-slate-900/90 border border-slate-800 rounded-3xl p-6 md:p-8 text-center shadow-2xl backdrop-blur-md">
             
+        <div class="result">
             <div id="result-icon-box" class="w-20 h-20 rounded-2xl mx-auto flex items-center justify-center text-4xl mb-4 shadow-xl">
                 <!-- Ícone Vitória ou Derrota -->
             </div>
@@ -236,18 +269,27 @@
                 <!-- Subtítulo -->
             </p>
 
+            
+
             <!-- Placar de Desempenho -->
             <div class="bg-slate-950/90 border border-slate-800 rounded-2xl p-5 mb-6 max-w-md mx-auto">
                 <div class="text-xs text-slate-400 uppercase tracking-widest font-bold mb-1">Pontuação Final</div>
                 <div class="text-4xl md:text-5xl font-display font-extrabold text-amber-400" id="result-score-text">
-                    0 / 10
+                    0 / 5
                 </div>
                 <p class="text-xs text-slate-400 mt-2" id="result-criteria-note">
-                    Mínimo para aprovação: 6 acertos (60%)
+                    Mínimo para aprovação: 3 acertos (60%)
                 </p>
             </div>
 
-            <!-- REVISÃO DAS 10 QUESTÕES -->
+            <button data-action="restart-game" class="w-full max-w-md py-4 px-8 bg-indigo-600 hover:bg-indigo-500 text-white font-display font-bold text-xl rounded-2xl shadow-lg transition cursor-pointer flex items-center justify-center space-x-3 mx-auto">
+                <i class="fa-solid fa-rotate-right"></i>
+                <span>JOGAR NOVAMENTE</span>
+            </button>
+
+        </div>
+
+            <!-- REVISÃO DAS 5 QUESTÕES -->
             <div class="text-left mb-6">
                 <h3 class="font-display font-bold text-lg text-slate-200 mb-3 flex items-center gap-2">
                     <i class="fa-solid fa-list-check text-indigo-400"></i>
@@ -259,16 +301,19 @@
                 </div>
             </div>
 
-            <button data-action="restart-game" class="w-full max-w-md py-4 px-8 bg-indigo-600 hover:bg-indigo-500 text-white font-display font-bold text-xl rounded-2xl shadow-lg transition cursor-pointer flex items-center justify-center space-x-3 mx-auto">
-                <i class="fa-solid fa-rotate-right"></i>
-                <span>JOGAR NOVAMENTE</span>
-            </button>
+            
         </section>
 
     </main>
 
-    <footer class="w-full max-w-5xl text-center text-xs text-slate-500 py-3 mt-4 border-t border-slate-800/60">
-        Desenvolvido para trabalho acadêmico de TI &bull; Tema: Percepção Visual & IA
+    <footer class="event-footer w-full max-w-5xl text-center text-xs text-slate-500 py-3 mt-4 border-t border-slate-800/60">
+        <span class="font-bold text-slate-300">SENAI</span>
+        <span class="mx-2" aria-hidden="true">|</span>
+        Rede Integrada de Bibliotecas
+        <span class="mx-2" aria-hidden="true">|</span>
+        Biblioteca SENAI Ipiranga Automobilística
+        <span class="mx-2" aria-hidden="true">|</span>
+        Desenvolvido com <span aria-label="amor">❤️</span> pela turma ADS1 para a SELIBI 2026
     </footer>
 
 
